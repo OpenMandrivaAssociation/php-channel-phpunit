@@ -11,6 +11,7 @@ Requires:	php-pear
 Requires(post): php-pear
 Requires(postun): php-pear
 BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 This package adds the phpunit channel which allows PEAR packages from this
