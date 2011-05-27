@@ -1,7 +1,7 @@
 Summary:	Adds phpunit channel to PEAR
 Name:		php-channel-phpunit
 Version:	1.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/PHP
 License:	BSD
 URL:		http://pear.phpunit.de
