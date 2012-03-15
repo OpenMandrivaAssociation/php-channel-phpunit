@@ -1,17 +1,20 @@
-Summary:	Adds phpunit channel to PEAR
+%define peardir %(pear config-get php_dir 2> /dev/null || echo %{_datadir}/pear)
+%define pear_xmldir  /var/lib/pear
+
 Name:		php-channel-phpunit
-Version:	1.3
-Release:	%mkrel 2
+Version:		1.3
+Release:		%mkrel 2
+Summary:	Adds phpunit channel to PEAR
 Group:		Development/PHP
-License:	BSD
+License:		BSD
 URL:		http://pear.phpunit.de
-Source0:	http://pear.phpunit.de/channel.xml
+Source0:		http://pear.phpunit.de/channel.xml
 BuildRequires:	php-pear
 Requires:	php-pear
 Requires(post): php-pear
 Requires(postun): php-pear
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 This package adds the phpunit channel which allows PEAR packages from this
@@ -22,29 +25,32 @@ channel to be installed.
 %setup -q -c -T
 
 %build
+# Empty build section, nothing to build
 
 %install
-rm -rf %{buildroot}
 
-install -d %{buildroot}%{_datadir}/pear/packages
+%{__mkdir_p} %{buildroot}%{pear_xmldir}
+%{__install} -pm 644 %{SOURCE0} %{buildroot}%{pear_xmldir}/pear.phpunit.de.xml
 
-install -m0644 %{SOURCE0} %{buildroot}%{_datadir}/pear/packages/pear.phpunit.de.xml
-
-%post
-if [ $1 -eq  1 ] ; then
-    %{_bindir}/pear channel-add %{_datadir}/pear/packages/pear.phpunit.de.xml > /dev/null || :
-else
-    %{_bindir}/pear channel-update %{_datadir}/pear/packages/pear.phpunit.de.xml > /dev/null ||:
-fi
-
-%postun
-if [ $1 -eq 0 ] ; then
-    %{_bindir}/pear channel-delete pear.phpunit.de > /dev/null || :
-fi
 
 %clean
-rm -rf %{buildroot}
+
+%{__rm} -rf %{buildroot
+
+%post
+if [ $1 -qt  1 ] ; then
+    pear channel-update %{pear_xmldir}/pear.phpunit.de.xml
+else
+    pear channel-add %{pear_xmldir}/pear.phpunit.de.xml
+fi
+
+%preun
+
+if [ $1 -eq 0 ] ; then
+    pear channel-delete pear.phpunit.de
+fi
+
 
 %files
 %defattr(-,root,root,-)
-%{_datadir}/pear/packages/pear.phpunit.de.xml
+%{pear_xmldir}/pear.phpunit.de.xml
