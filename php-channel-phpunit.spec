@@ -3,7 +3,7 @@
 
 Name:		php-channel-phpunit
 Version:		1.3
-Release:		%mkrel 3.1
+Release:		%mkrel 4
 Summary:		Adds phpunit channel to PEAR
 Group:		Development/PHP
 License:		BSD
@@ -13,7 +13,6 @@ BuildRequires:	php-pear
 Requires(post): php-pear
 Requires(postun): php-pear
 Requires:	php-pear
-Requires(post): php-cli
 BuildArch:	noarch
 
 
