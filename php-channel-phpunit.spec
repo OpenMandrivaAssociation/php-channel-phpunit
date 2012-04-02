@@ -3,7 +3,7 @@
 
 Name:		php-channel-phpunit
 Version:		1.3
-Release:		%mkrel 4
+Release:		%mkrel 5
 Summary:		Adds phpunit channel to PEAR
 Group:		Development/PHP
 License:		BSD
@@ -38,10 +38,10 @@ channel to be installed.
 %{__rm} -rf %{buildroot
 
 %post
-if [ $1 -qt  1 ] ; then
-    pear channel-update pear.phpunit.de
+if [ $1 -eq  1 ] ; then
+    pear channel-add %{_datadir}/pear/packages/pear.phpunit.de.xml
 else
-    pear channel-add %{pear_xmldir}/pear.phpunit.de.xml
+    pear channel-update %{_datadir}/pear/packages/pear.phpunit.de.xml
 fi
 
 %preun
