@@ -3,7 +3,7 @@
 
 Name:		php-channel-phpunit
 Version:		1.3
-Release:		9
+Release:		10
 Summary:		Adds phpunit channel to PEAR
 Group:		Development/PHP
 License:		BSD
