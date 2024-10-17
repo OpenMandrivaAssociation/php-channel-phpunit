@@ -7,7 +7,7 @@ Release:		10
 Summary:		Adds phpunit channel to PEAR
 Group:		Development/PHP
 License:		BSD
-URL:		http://pear.phpunit.de
+URL:		https://pear.phpunit.de
 Source0:		http://pear.phpunit.de/channel.xml
 BuildRequires:	php-pear
 Requires(pre): php-cli
